@@ -1,0 +1,23 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "outDir": "./built",
+        "module": "amd",
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "target": "es5",
+        "allowUnreachableCode": false,
+        "noImplicitReturns": true,
+        "noImplicitAny": true,
+        "typeRoots": [ "./typings" ],
+        "outFile": "./built"
+    },
+    "include": [
+        "./**/*"
+    ],
+    "exclude": [
+        "./plugins/**/*",
+        "./typings/**/*",
+        "./built/**/*" 
+    ]
+}
