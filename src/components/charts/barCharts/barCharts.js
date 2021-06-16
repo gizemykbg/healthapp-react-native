@@ -1,110 +1,114 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react';
 import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    processColor,
-    ScrollView,
-    Dimensions,
-    TouchableOpacity,
-    Linking
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  processColor,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+  Linking,
 } from 'react-native';
 
-import { BarChart, LineChart, PieChart } from 'react-native-charts-wrapper'
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { colors } from '../../../styles';
+import {BarChart, LineChart, PieChart} from 'react-native-charts-wrapper';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {colors} from '../../../styles';
 
-
-const BarCharts = ({values, label,valueFormatter, color, barShadowColor,highlightColor}) => {
-    const [bar, setBar] = useState({
-        
-        legend: {
-            enabled: true,
-            textSize: 14,
-            form: 'SQUARE',
-            formSize: 15,
-            xEntrySpace: 10,
-            yEntrySpace: 10,
-            formToTextSpace: 5,
-            wordWrapEnabled: true,
-            maxSizePercent: 0.5
+const BarCharts = ({
+  values,
+  label,
+  valueFormatter,
+  color,
+  barShadowColor,
+  highlightColor,
+}) => {
+  const [bar, setBar] = useState({
+    legend: {
+      enabled: true,
+      textSize: 14,
+      form: 'SQUARE',
+      formSize: 15,
+      xEntrySpace: 10,
+      yEntrySpace: 10,
+      formToTextSpace: 5,
+      wordWrapEnabled: true,
+      maxSizePercent: 0.5,
+    },
+    data: {
+      dataSets: [
+        {
+          values: values,
+          label: label,
+          config: {
+            color: color,
+            barShadowColor: barShadowColor,
+            highlightAlpha: 90,
+            highlightColor: highlightColor,
+          },
         },
-        data: {
-            dataSets: [{
-                values: values,
-                label: label,
-                config: {
-                    color: color,
-                    barShadowColor: barShadowColor,
-                    highlightAlpha: 90,
-                    highlightColor: highlightColor,
-                }
-            }],
+      ],
 
-            config: {
-                barWidth: 0.5,
-            }
-        },
-        highlights: [{ x: 3 }, { x: 6 }],
-        xAxis: {
-            valueFormatter: valueFormatter,
-            granularityEnabled: true,
-            granularity: 1
-        }
-    })
-    return (
-        <BarChart
-            style={styles.chart}
-            data={bar.data}
-            xAxis={bar.xAxis}
-            animation={{ durationX: 2000 }}
-            legend={bar.legend}
-            gridBackgroundColor={processColor(colors.dark)}
-            visibleRange={{ x: { min: 5, max: 5 } }}
-            drawBarShadow={false}
-            drawValueAboveBar={true}
-            drawHighlightArrow={true}
-            //onSelect={this.handleSelect.bind(this)}
-            highlights={bar.highlights}
-            onChange={(event) => console.log(event.nativeEvent)}
-        />
-
-
-    );
-}
+      config: {
+        barWidth: 0.5,
+      },
+    },
+    highlights: [{x: 3}, {x: 6}],
+    xAxis: {
+      valueFormatter: valueFormatter,
+      granularityEnabled: true,
+      granularity: 1,
+    },
+  });
+  return (
+    <BarChart
+      style={styles.chart}
+      data={bar.data}
+      xAxis={bar.xAxis}
+      animation={{durationX: 2000}}
+      legend={bar.legend}
+      gridBackgroundColor={processColor(colors.dark)}
+      visibleRange={{x: {min: 5, max: 5}}}
+      drawBarShadow={false}
+      drawValueAboveBar={true}
+      drawHighlightArrow={true}
+      //onSelect={this.handleSelect.bind(this)}
+      highlights={bar.highlights}
+    />
+  );
+};
 export default BarCharts;
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F5FCFF',
-    },
-    chart: {
-        height: 250,
-        marginVertical:20,
-        zIndex:0
-    },
-    title: {
-        marginTop: 10,
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center'
-    },
-    bar: {
-        marginTop: 10,
-        height: Dimensions.get('window').height / 2,
-        width: Dimensions.get('window').width
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+  },
+  chart: {
+    height: 250,
+    marginVertical: 20,
+    zIndex: 0,
+  },
+  title: {
+    marginTop: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  bar: {
+    marginTop: 10,
+    height: Dimensions.get('window').height / 2,
+    width: Dimensions.get('window').width,
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
 });
 
 // const [bar, setBar] = React.useState({

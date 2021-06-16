@@ -1,15 +1,157 @@
-import React, { useState } from 'react'
+import React, {Component} from 'react';
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Button,
+  Alert,
+  ActivityIndicator,
+  Text,
+  AsyncStorage,
+} from 'react-native';
+import firebase from '../../../../database/firebase';
+
+export default class Register extends Component {
+  constructor() {
+    super();
+    this.state = {
+      displayName: '',
+      email: '',
+      password: '',
+      isLoading: false,
+    };
+  }
+
+  updateInputVal = (val, prop) => {
+    const state = this.state;
+    state[prop] = val;
+    this.setState(state);
+  };
+
+  registerUser = () => {
+    console.log(this.state.displayName);
+    if (
+      this.state.email === '' ||
+      this.state.password === '' ||
+      this.state.displayName === ''
+    ) {
+      Alert.alert('detayları giriniz!');
+    } else {
+      this.setState({
+        isLoading: true,
+      });
+      this.setState({
+        isLoading: false,
+        displayName: '',
+        email: '',
+        password: '',
+      });
+      const name = this.state.displayName;
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(user => {
+          user.user.updateProfile({
+            displayName: name,
+          });
+          AsyncStorage.setItem('displayName', name);
+          this.props.navigation.navigate('Main', {
+            screen: 'Tabs',
+            params: {screen: 'Home'},
+          });
+        })
+        .catch(error => {
+          Alert.alert('Bilinmeyen bir hata oluştu!');
+          console.log(error);
+          this.setState({errorMessage: error.message});
+        });
+    }
+  };
+
+  render() {
+    if (this.state.isLoading) {
+      return (
+        <View style={styles.preloader}>
+          <ActivityIndicator size="large" color="#9E9E9E" />
+        </View>
+      );
+    }
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Name"
+          value={this.state.displayName}
+          placeholderTextColor="rgba(0,0,0,0.3)"
+          onChangeText={val => this.updateInputVal(val, 'displayName')}
+        />
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Email"
+          value={this.state.email}
+          placeholderTextColor="rgba(0,0,0,0.3)"
+          onChangeText={val => this.updateInputVal(val, 'email')}
+        />
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Password"
+          value={this.state.password}
+          placeholderTextColor="rgba(0,0,0,0.3)"
+          onChangeText={val => this.updateInputVal(val, 'password')}
+          maxLength={15}
+          secureTextEntry={true}
+        />
+        <Button
+          color="#3740FE"
+          title="Kayıt Ol"
+          onPress={() => this.registerUser()}
+        />
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: 35,
+    backgroundColor: '#fff',
+  },
+  inputStyle: {
+    width: '100%',
+    marginBottom: 15,
+    paddingBottom: 15,
+    alignSelf: 'center',
+    borderColor: '#ccc',
+    color: '#000',
+    borderBottomWidth: 1,
+  },
+
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+});
+
+/* import React, { useState } from 'react'
 import { View, ScrollView, StyleSheet, Image, Text } from 'react-native'
 import { colors } from '../../../styles'
 //components
 import { BackButton, Input, Button } from '../../../components'
-import axios from 'axios'
+import firebase from '../../../../database/firebase';
 
 const Register = ({navigation}) => {
     const [registerData, setRegisterData] = useState({
-        firstName: '',
-        lastName: '',
-        username: '',
+        displayName: '',
         email: '',
         password: ''
     });
@@ -17,6 +159,7 @@ const Register = ({navigation}) => {
     const setValue = valueObj => {
         setRegisterData(registerData => ({ ...registerData, ...valueObj }));
     };
+
     const handleButton = () => {
         for (const data in registerData) {
             if(registerData[data] !== ''){
@@ -116,10 +259,9 @@ export const styles = StyleSheet.create({
     }
 })
 
+ */
 
-
-
- /*   const registerData= async (props)=>{
+/*   const registerData= async (props)=>{
         fetch("http://88.241.35.219:3000/Register",{
           method:"POST",
           headers: {

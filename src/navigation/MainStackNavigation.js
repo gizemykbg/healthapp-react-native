@@ -9,7 +9,7 @@ const MainStack = createStackNavigator();
 function MainStackNavigation() {
   return (
     <MainStack.Navigator mode="modal" >
-    {/*   <MainStack.Screen name="Auts" component={AuthStackNavigation} options={{headerShown:false}}/>    */}
+       <MainStack.Screen name="Auts" component={AuthStackNavigation} options={{headerShown:false}}/>    
       <MainStack.Screen name="Tabs" component={TabNavigation} options={{headerShown:false}}/>
       <MainStack.Screen name="Charts" component={ChartStackNavigation} options={{headerShown:false}}/>
     </MainStack.Navigator>
