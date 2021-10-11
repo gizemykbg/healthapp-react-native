@@ -17,7 +17,8 @@ import {Bar} from 'react-native-progress';
 import moment from 'moment';
 
 import GoogleFit, {Scopes} from 'react-native-google-fit';
-const glass = [
+
+/* const glass = [
   {label: '1 Bardak', value: '1 bardak'},
   {label: '2 Bardak', value: '2 bardak'},
   {label: '3 Bardak', value: '3 bardak'},
@@ -31,18 +32,18 @@ const glass = [
 
 const values = [{y: 6}, {y: 8}, {y: 10}, {y: 12}, {y: 8}, {y: 6}, {y: 5}];
 const valueFormatter = [
-  '01.04.2021',
-  '02.04.2021',
-  '03.04.2021',
-  '04.04.2021',
-  '05.04.2021',
-  '06.04.2021',
-  '07.04.2021',
+  '30.06.2021',
+  '01.07.2021',
+  '02.07.2021',
+  '03.07.2021',
+  '04.07.2021',
+  '05.07.2021',
+  '06.07.2021',
 ];
-const label = '1 Haftalık Su Tüketimi (Bardak)';
+const label = '1 Haftalık Su Tüketimi (Bardak)'; */
 
 const AddWater = props => {
-  const [destination, setDestination] = useState(true);
+  const [destination, setDestination] = useState(true); //false dersem görüntü true dersem kayıt
   const [destinationShow, setDestinationShow] = useState(false);
   const [water, setWater] = useState('');
   const [waterInp, setWaterInp] = useState('');
@@ -99,17 +100,17 @@ const AddWater = props => {
                 style={styles.destinationFinishText}
                 numberOfLines={2}
                 ellipsizeMode="tail">
-                Hedefine Kalan Tüketim : 2 Bardak
+                Hedefine Kalan Tüketim : {3000 - waterInp} {/* ?? */}
               </Text>
               <Text
                 style={styles.destinationText}
                 numberOfLines={1}
                 ellipsizeMode="tail">
-                Hedefin : 9 Bardak
+                Hedefin : 3 Litre
               </Text>
             </View>
 
-            <ChartDestinationButton
+            {/*     <ChartDestinationButton
               onPress={() => setDestinationShow(!destinationShow)}
               destinationShow={destinationShow}
               buttonTitle="Hedefiniz Olan Su Miktarını Değiştirmek için Tıklayınız"
@@ -119,7 +120,7 @@ const AddWater = props => {
               bgColor={colors.lightBlue}
               borColor={colors.blue}
               buttonColor={colors.pink}
-            />
+            /> */}
 
             <View style={{marginTop: 10, zIndex: 1}}>
               <Text

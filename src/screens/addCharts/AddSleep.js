@@ -16,7 +16,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import {Bar} from 'react-native-progress';
 import moment from 'moment';
 import GoogleFit, {Scopes} from 'react-native-google-fit';
-const sleep = [
+/* const sleep = [
   {label: '1 Saat', value: '1 saat'},
   {label: '2 Saat', value: '2 saat'},
   {label: '3 Saat', value: '3 saat'},
@@ -26,13 +26,13 @@ const sleep = [
   {label: '7 Saat', value: '7 saat'},
   {label: '8 Saat', value: '8 saat'},
   {label: '9 Saat', value: '9 saat'},
-];
+]; */
 
 const label = '1 Haftalık Uyku Süreleri';
 
 const AddSleep = props => {
-  const [destination, setDestination] = useState(false);
-  const [destinationShow, setDestinationShow] = useState(false);
+  const [destination, setDestination] = useState(false); //False
+  const [destinationShow, setDestinationShow] = useState(true);
   const [sleepTime, setSleepTime] = useState(' ');
   const [loading, setLoading] = useState(true);
   const [values, setValues] = useState(true);
@@ -44,7 +44,7 @@ const AddSleep = props => {
   useEffect(() => {
     let values = [];
     const opt1 = {
-      startDate: moment().subtract(2, 'days').toDate(),
+      startDate: moment().subtract(1, 'days').toDate(), //1
       endDate: moment().add(1, 'days').toDate(),
     };
     GoogleFit.getSleepSamples(opt1).then(res => {
@@ -197,16 +197,17 @@ const AddSleep = props => {
             <View style={styles.destinationView}>
               <Text style={styles.destinationFinishText}>
                 Hedefine Kalan Süre :
-                {9 - (values[values.length] ? values[values.length] : 0)} Saat
+                {8 - (values[values.length] ? values[values.length] : 0)} Saat
+                {/* {8 - (values[values.length] ? values[values.length] : 0)} Saat */}
               </Text>
               <Text
                 style={styles.destinationText}
                 numberOfLines={1}
                 ellipsizeMode="tail">
-                Hedefin : 9 Saat
+                Hedefin : 8 Saat
               </Text>
             </View>
-            {/* <ChartDestinationButton
+            {/*   <ChartDestinationButton  
               onPress={() => setDestinationShow(!destinationShow)}
               destinationShow={destinationShow}
               buttonTitle="Uyku Süreni Değiştirmek için Tıklayınız"
@@ -218,7 +219,7 @@ const AddSleep = props => {
               buttonColor={colors.light}
             />
               <View style={{marginTop: 10, zIndex: 1}}>
-              <Text
+               <Text
                 style={[
                   styles.exerciseTracking,
                   {fontSize: 16, fontWeight: '500'},
@@ -231,7 +232,7 @@ const AddSleep = props => {
                   {fontSize: 15, fontWeight: '400'},
                 ]}>
                 Aşağıdan uyku süresini seçiniz.
-              </Text>
+              </Text> 
               <View style={{zIndex: 1}}>
                 
                 <DropDownPicker
@@ -286,7 +287,7 @@ const AddSleep = props => {
                 style={{paddingVertical: 10, marginHorizontal: 80}}
                 onPress={() => alert('Kaydedildi')}
               />
-                </View>*/}
+                </View> */}
 
             {!loading && values.length > 0 && (
               <>

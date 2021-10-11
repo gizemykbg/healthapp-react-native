@@ -16,57 +16,27 @@ import {BarCharts} from '../../components';
 import Store from '../../store/store';
 import {TextInputAdd} from '../../components';
 
-const values = [{y: 4}, {y: 5}, {y: 4}, {y: 5}, {y: 3}, {y: 3}, {y: 4}];
+const values = [{y: 1200}, {y: 1500}, {y: 2100}, {y: 2800}, {y: 0}, {y: 0}, {y: 0}];
 const valueFormatter = [
-  '01.04.2021',
-  '02.04.2021',
-  '03.04.2021',
-  '04.04.2021',
-  '05.04.2021',
-  '06.04.2021',
-  '07.04.2021',
+  '30.06.2021',
+  '01.07.2021',
+  '02.07.2021',
+  '03.07.2021',
+  '04.07.2021',
+  '05.07.2021',
+  '06.07.2021',
 ];
-const label = '1 Haftalık Beslenme Puanları';
+const label = '1 Haftalık Kalori Takibi';
 
 const AddNutrition = props => {
   const [call, setCall] = useState();
   const [full, setFull] = useState([]);
-  const [destination, setDestination] = useState(true);
-  const [showFood, setShowFood] = useState(false);
+  const [destination, setDestination] = useState(false);///
+  const [showFood, setShowFood] = useState(true);
   const [flag, setFlag] = useState(false);
   const [list, setList] = useState([]);
+ 
 
-  /* const getData = async () => {
-    const url = "https://trackapi.nutritionix.com/v2/natural/nutrients"
-    const response = await fetch(url, {
-         method: 'POST',
-         headers:{
-           'Content-Type': 'application/x-www-form-urlencoded',
-            "x-app-id": "5c3e6609",
-            "x-app-key": "cab1d1d56164065b77a546f1c3b896d4",
-            "x-remote-user-id": "0"
-     },
-        // form: {
-        //    "query": "for breakfast i ate 2 eggs 5 bacon and 4 french toast"
-        //},
-        body: JSON.stringify({ query: `i ate ${value2} ${value1}` }) }) 
-
-        const resData = await response.json();
-        console.log(resData);
-        //resData.foods.forEach(y=>{
-            
-            setCall(resData.index[0].nf_calories)
-            a=full;
-            console.log(full);
-            a.push(index);
-            setFull(a);
-    //    });
-        setFlag(true);
-        console.log(full);
-    }
-    useEffect(()=>{
-        getData();
-    },[]) */
 
   const [breakfast, setBreakfast] = useState([
     {
@@ -237,7 +207,7 @@ const AddNutrition = props => {
   const dinnerRemoveRow = index => {
     const filteredItems = dinner.filter(filteredItem => index !== filteredItem);
     setDinner([...filteredItems]);
-    //Store.removeBreakfast(index)
+    Store.removeBreakfast(index)
   };
   const dinnerButton = () => {
     let newdinner = [];
@@ -251,6 +221,16 @@ const AddNutrition = props => {
     //console.log(breakfast)
     Store.addDinner(newdinner);
   };
+  useEffect(() => {
+    const getUser = async () => {
+      const value = await AsyncStorage.getItem('displayName');
+      if (value !== null) {
+        setDisplayName(value);
+      }
+    };
+    return getUser();
+  },)
+
 
   return (
     <View style={styles.container}>
@@ -338,7 +318,7 @@ const AddNutrition = props => {
           </View>
         </View>
 
-        {/* <Text
+      {/*    <Text  ///
           style={{
             fontWeight: '400',
             fontSize: 17,
@@ -348,10 +328,10 @@ const AddNutrition = props => {
           }}>
           Beslenme düzeni oluşturabilmek için öğünlerini aşağıdaki alana
           yazınız.
-        </Text>*/}
-        {/*  <TouchableOpacity onPress={() => setShowFood(!showFood)} style={{ height: 40, backgroundColor: colors.lightBlue, justifyContent: 'center', alignItems: 'center', borderRadius: 8, marginBottom: 10 }}>
+        </Text> /// 
+          <TouchableOpacity onPress={() => setShowFood(!showFood)} style={{ height: 40, backgroundColor: colors.lightBlue, justifyContent: 'center', alignItems: 'center', borderRadius: 8, marginBottom: 10 }}>
                     <Text style={{ fontSize: 16, fontWeight: "600", color: colors.darkBlue }}>Öğün Girmek için Tıklayınız</Text>
-    </TouchableOpacity>*/}
+    </TouchableOpacity> */}
         {showFood && (
           <View
             style={{
@@ -494,8 +474,8 @@ const AddNutrition = props => {
                 onChangeText1={lunchHandleChange}
                 onChangeText2={lunchHandleChange}
                 onPress={lunchButton}
-                //onChangeText1={(i, text) => handleChange(i, text, 'value1')}
-                //onChangeText2={(i, text) => handleChange(i, text, 'value2')}
+               // onChangeText1={(i, text) => handleChange(i, text, 'value1')}
+               // onChangeText2={(i, text) => handleChange(i, text, 'value2')}
               />
             </View>
             <View style={{marginBottom: 20}}>
@@ -562,8 +542,8 @@ const AddNutrition = props => {
                 onChangeText1={snackHandleChange}
                 onChangeText2={snackHandleChange}
                 onPress={snackButton}
-                //onChangeText1={(i, text) => handleChange(i, text, 'value1')}
-                //onChangeText2={(i, text) => handleChange(i, text, 'value2')}
+              //  onChangeText1={(i, text) => handleChange(i, text, 'value1')}
+              //  onChangeText2={(i, text) => handleChange(i, text, 'value2')}
               />
             </View>
             <View>
@@ -630,8 +610,8 @@ const AddNutrition = props => {
                 onChangeText1={dinnerHandleChange}
                 onChangeText2={dinnerHandleChange}
                 onPress={dinnerButton}
-                //onChangeText1={(i, text) => handleChange(i, text, 'value1')}
-                //onChangeText2={(i, text) => handleChange(i, text, 'value2')}
+              //  onChangeText1={(i, text) => handleChange(i, text, 'value1')}
+              //  onChangeText2={(i, text) => handleChange(i, text, 'value2')}
               />
             </View>
           </View>

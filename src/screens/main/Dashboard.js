@@ -39,14 +39,6 @@ const Dashboard = ({navigation}) => {
 
   const isFocused = useIsFocused();
   useEffect(() => {
-    /* axios.get('http://localhost:3000/api/getDays/60845d2edaa04436085c435f')
-            .then(response => {
-                console.log(response.data());
-            })
-            .catch(error => {
-                console.log(error);
-            }); */
-
     var date = moment().format(''); //a
     var currentdate = moment().format('LL'); //may 1, 2021
     setDate(date);
@@ -81,7 +73,7 @@ const Dashboard = ({navigation}) => {
         console.log(today.toDate());
         if (authResult.success) {
           const opt = {
-            startDate: moment().subtract(2, 'days').toDate(),
+            startDate: moment().subtract(1, 'days').toDate(), //1
             endDate: moment().add(1, 'days').toDate(),
           };
           GoogleFit.getSleepSamples(opt).then(res => {
@@ -113,7 +105,7 @@ const Dashboard = ({navigation}) => {
           console.log('AUTH_DENIED', authResult.message);
         }
         const optCalory = {
-          startDate: moment().subtract(2, 'days').toDate(),
+          startDate: moment().subtract(1, 'days').toDate(),
           endDate: moment().add(1, 'days').toDate(),
           basalCalculation: false, // optional, to calculate or not basalAVG over the week
           bucketUnit: 'DAY', // optional - default "DAY". Valid values: "NANOSECOND" | "MICROSECOND" | "MILLISECOND" | "SECOND" | "MINUTE" | "HOUR" | "DAY"

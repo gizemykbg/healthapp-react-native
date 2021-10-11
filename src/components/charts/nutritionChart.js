@@ -46,7 +46,7 @@ const NutritionChart = ({onPress, calorie}) => {
       <View>
         <View style={styles.titleMain}>
           <View>
-            <Text style={styles.text}>Alınan Kalori</Text>
+            <Text style={styles.text}>Kalori Miktarı</Text>
             <Text>{'Today ' + moment().format('MM[.]DD')}</Text>
           </View>
           <Emoji name="avocado" style={{fontSize: 30}} />

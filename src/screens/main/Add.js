@@ -44,13 +44,20 @@ const DATA = [
     color: colors.lightYellow,
     navigationName: 'AddExercise',
   },
-  /* {
+  {
     id: 5,
     name: 'mag_right',
     title: 'Test Ekle',
     color: colors.lightPurple,
     navigationName: 'AddTest',
-  },*/
+  },
+  {
+    id: 6,
+    name: 'weight_lifter',
+    title: 'aktivite',
+    color: colors.lightGreen,
+    navigationName: 'AddSpor',
+  },
 ];
 
 const Add = () => {

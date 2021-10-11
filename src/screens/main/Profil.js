@@ -35,7 +35,7 @@ const Profil = () => {
       .then(authResult => {
         if (authResult.success) {
           const opt = {
-            startDate: moment().subtract(2, 'days').toDate(),
+            startDate: moment().subtract(1, 'days').toDate(),
             endDate: moment().add(1, 'days').toDate(),
           };
           GoogleFit.getHydrationSamples(opt).then(res => {
@@ -46,7 +46,7 @@ const Profil = () => {
             setWater(waterConsumed);
           });
           const optCalory = {
-            startDate: moment().subtract(2, 'days').toDate(),
+            startDate: moment().subtract(1, 'days').toDate(),
             endDate: moment().add(1, 'days').toDate(),
             basalCalculation: false, // optional, to calculate or not basalAVG over the week
             bucketUnit: 'DAY', // optional - default "DAY". Valid values: "NANOSECOND" | "MICROSECOND" | "MILLISECOND" | "SECOND" | "MINUTE" | "HOUR" | "DAY"
