@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+/* import React, {useState} from 'react';
 import {
   View,
   ScrollView,
@@ -122,3 +122,4 @@ export const styles = StyleSheet.create({
     color: colors.dark,
   },
 });
+ */

@@ -16,7 +16,15 @@ import {BarCharts} from '../../components';
 import Store from '../../store/store';
 import {TextInputAdd} from '../../components';
 
-const values = [{y: 1200}, {y: 1500}, {y: 2100}, {y: 2800}, {y: 0}, {y: 0}, {y: 0}];
+const values = [
+  {y: 1200},
+  {y: 1500},
+  {y: 2100},
+  {y: 2800},
+  {y: 0},
+  {y: 0},
+  {y: 0},
+];
 const valueFormatter = [
   '30.06.2021',
   '01.07.2021',
@@ -31,12 +39,10 @@ const label = '1 Haftalık Kalori Takibi';
 const AddNutrition = props => {
   const [call, setCall] = useState();
   const [full, setFull] = useState([]);
-  const [destination, setDestination] = useState(false);///
+  const [destination, setDestination] = useState(false); ///
   const [showFood, setShowFood] = useState(true);
   const [flag, setFlag] = useState(false);
   const [list, setList] = useState([]);
- 
-
 
   const [breakfast, setBreakfast] = useState([
     {
@@ -207,7 +213,7 @@ const AddNutrition = props => {
   const dinnerRemoveRow = index => {
     const filteredItems = dinner.filter(filteredItem => index !== filteredItem);
     setDinner([...filteredItems]);
-    Store.removeBreakfast(index)
+    Store.removeBreakfast(index);
   };
   const dinnerButton = () => {
     let newdinner = [];
@@ -229,8 +235,7 @@ const AddNutrition = props => {
       }
     };
     return getUser();
-  },)
-
+  });
 
   return (
     <View style={styles.container}>
@@ -318,7 +323,7 @@ const AddNutrition = props => {
           </View>
         </View>
 
-      {/*    <Text  ///
+        {/*    <Text  ///
           style={{
             fontWeight: '400',
             fontSize: 17,
@@ -474,8 +479,8 @@ const AddNutrition = props => {
                 onChangeText1={lunchHandleChange}
                 onChangeText2={lunchHandleChange}
                 onPress={lunchButton}
-               // onChangeText1={(i, text) => handleChange(i, text, 'value1')}
-               // onChangeText2={(i, text) => handleChange(i, text, 'value2')}
+                // onChangeText1={(i, text) => handleChange(i, text, 'value1')}
+                // onChangeText2={(i, text) => handleChange(i, text, 'value2')}
               />
             </View>
             <View style={{marginBottom: 20}}>
@@ -542,8 +547,8 @@ const AddNutrition = props => {
                 onChangeText1={snackHandleChange}
                 onChangeText2={snackHandleChange}
                 onPress={snackButton}
-              //  onChangeText1={(i, text) => handleChange(i, text, 'value1')}
-              //  onChangeText2={(i, text) => handleChange(i, text, 'value2')}
+                //  onChangeText1={(i, text) => handleChange(i, text, 'value1')}
+                //  onChangeText2={(i, text) => handleChange(i, text, 'value2')}
               />
             </View>
             <View>
@@ -610,8 +615,8 @@ const AddNutrition = props => {
                 onChangeText1={dinnerHandleChange}
                 onChangeText2={dinnerHandleChange}
                 onPress={dinnerButton}
-              //  onChangeText1={(i, text) => handleChange(i, text, 'value1')}
-              //  onChangeText2={(i, text) => handleChange(i, text, 'value2')}
+                //  onChangeText1={(i, text) => handleChange(i, text, 'value1')}
+                //  onChangeText2={(i, text) => handleChange(i, text, 'value2')}
               />
             </View>
           </View>
